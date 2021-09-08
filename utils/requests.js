@@ -46,3 +46,5 @@ export const getCategory = {
     url: `/discover/movie?api_key=${API_KEY}&with_genres=10770`,
   },
 };
+
+export const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/original/';

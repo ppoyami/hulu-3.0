@@ -1,7 +1,16 @@
-export default function Grid() {
+import Thumbnail from 'components/Thumbnail';
+import tw, { css } from 'twin.macro';
+
+const styles = {
+  container: tw``,
+};
+
+export default function Grid({ dataset }) {
   return (
-    <div>
-      <h1>Grid</h1>
+    <div css={styles.container}>
+      {dataset.map(data => (
+        <Thumbnail key={data.id} data={data} />
+      ))}
     </div>
   );
 }
