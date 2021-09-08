@@ -1,15 +1,21 @@
-import tw from 'twin.macro';
+import tw, { css } from 'twin.macro';
 import Image from 'next/image';
 
 import { IMAGE_BASE_URL } from 'utils/requests';
 import { ThumbUpIcon } from '@heroicons/react/outline';
 
 const styles = {
-  container: tw`p-2 cursor-pointer`,
+  container: tw`p-2 cursor-pointer relative`,
   image: tw`transform group-hover:scale-125 transition duration-300 ease-in-out`,
-  info: tw`p-2`,
-  info__overview: tw`truncate max-w-md`,
-  info__title: tw`text-2xl mt-1 text-white transition-all duration-100 ease-in-out group-hover:font-bold`,
+  // TODO: tw`` 내부에 커스텀 css 입력하는 방법은?
+  overview: css`
+    max-height: calc(33.3% - 1rem);
+    max-width: calc(100% - 1rem);
+    background-color: rgba(0, 0, 0, 0.8);
+    ${tw` opacity[0] line-height[1.7] font-weight[700] absolute bottom-20 p-3 transition duration-300 ease-in-out transform translate-y-6 overflow-hidden overflow-ellipsis group-hover:opacity-100 group-hover:translate-y-0`}
+  `,
+  info: tw`h-20 p-2`,
+  info__title: tw`text-2xl truncate mt-1 text-white transition-all duration-100 ease-in-out group-hover:font-bold`,
   info__others: tw`flex items-center opacity-0 group-hover:opacity-100`,
   icon: tw`ml-3 h-5`,
 };
@@ -26,8 +32,12 @@ const Thumbnail = ({ data }) => {
         height={1080}
         width={1920}
       />
+      <p css={styles.overview}>
+        {data.overview.length > 150
+          ? `${data.overview.slice(0, 150)}...`
+          : data.overview}
+      </p>
       <div css={styles.info}>
-        <p css={styles.info__overview}>{data.overview}</p>
         <h2 css={styles.info__title}>{data.title || data.original_name}</h2>
         <p css={styles.info__others}>
           {data.media_type && `${data.media_type} • `}

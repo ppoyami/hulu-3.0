@@ -26,6 +26,7 @@ export default function Nav() {
         ))}
       </div>
       <div css={styles.fade}></div>
+      <div css={[styles.fade, tw`left-0 bg-gradient-to-r`]}></div>
     </nav>
   );
 }
