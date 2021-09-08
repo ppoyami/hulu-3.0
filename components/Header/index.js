@@ -13,8 +13,8 @@ import {
 import HeaderItem from './HeaderItem';
 
 const styles = {
-  header: tw`flex flex-col sm:flex-row justify-between items-center h-auto`,
-  items: tw`flex flex-grow justify-evenly max-w-2xl`,
+  header: tw`flex flex-col pt-5 sm:pt-0 sm:flex-row justify-between items-center h-auto placeholder-opacity-100`,
+  items: tw`flex flex-grow justify-evenly max-w-2xl `,
   logo: tw`object-contain`,
 };
 

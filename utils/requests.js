@@ -18,7 +18,7 @@ export const getCategory = {
     url: `/discover/movie?api_key=${API_KEY}&with_genres=35`,
   },
   fetchHorrorMovies: {
-    title: '',
+    title: 'Horror',
     url: `/discover/movie?api_key=${API_KEY}&with_genres=27`,
   },
   fetchRomanceMovies: {
