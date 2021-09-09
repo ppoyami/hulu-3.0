@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import tw, { css } from 'twin.macro';
 import Image from 'next/image';
 
@@ -12,7 +13,7 @@ const styles = {
     max-height: calc(33.3% - 1rem);
     max-width: calc(100% - 1rem);
     background-color: rgba(0, 0, 0, 0.8);
-    ${tw` opacity[0] line-height[1.7] font-weight[700] absolute bottom-20 p-3 transition duration-300 ease-in-out transform translate-y-6 overflow-hidden overflow-ellipsis group-hover:opacity-100 group-hover:translate-y-0`}
+    ${tw` font-size[small] sm:font-size[medium] xl:font-size[large] opacity[0] line-height[1.7] font-weight[700] absolute bottom-20 p-3 transition duration-300 ease-in-out transform translate-y-6 overflow-hidden overflow-ellipsis group-hover:opacity-100 group-hover:translate-y-0`}
   `,
   info: tw`h-20 p-2`,
   info__title: tw`text-2xl truncate mt-1 text-white transition-all duration-100 ease-in-out group-hover:font-bold`,
@@ -22,8 +23,12 @@ const styles = {
 
 // eslint-disable-next-line react/display-name
 const Thumbnail = ({ data }) => {
+  const router = useRouter();
+  const routingDetailPage = () => {
+    router.push(`/movie/${data.id}`);
+  };
   return (
-    <div className="group" css={styles.container}>
+    <div className="group" css={styles.container} onClick={routingDetailPage}>
       <Image
         css={styles.image}
         layout="responsive"

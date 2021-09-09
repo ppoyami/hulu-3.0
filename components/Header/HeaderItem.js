@@ -6,9 +6,9 @@ const styles = {
   text: tw`opacity-0 group-hover:opacity-100 tracking-widest`,
 };
 
-export default function HeaderItem({ title, Icon }) {
+export default function HeaderItem({ title, Icon, ...rest }) {
   return (
-    <div className="group" css={styles.wrapper}>
+    <div className="group" css={styles.wrapper} {...rest}>
       <Icon css={styles.icon} />
       <p css={styles.text}>{title}</p>
     </div>
