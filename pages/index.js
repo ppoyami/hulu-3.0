@@ -5,6 +5,7 @@ import { getCategory } from 'utils/requests';
 import Grid from 'components/Grid';
 
 export default function Home({ results }) {
+  console.log(results);
   return (
     <div>
       <Nav />

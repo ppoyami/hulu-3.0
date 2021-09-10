@@ -37,9 +37,7 @@ function reducer(state = initialState, action) {
   }
 }
 
-// callback을 받아 비동기 호출 -> 각 단계에 따라 dispath
-// 상태값을 반환
-export default function useAsync(callback, deps = []) {
+export default function useAsync(callback) {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const fetchData = useCallback(async () => {
@@ -55,7 +53,7 @@ export default function useAsync(callback, deps = []) {
 
   useEffect(() => {
     fetchData();
-  }, [...deps]);
+  }, [fetchData]);
 
   return [state, fetchData];
 }

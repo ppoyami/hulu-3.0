@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import tw, { css } from 'twin.macro';
+import { useCallback } from 'react';
+import tw from 'twin.macro';
 
 import useAsync from 'hooks/useAsync';
 import tmdb from 'service';
@@ -9,7 +10,7 @@ import { StarIcon } from '@heroicons/react/solid';
 import Button from 'components/elements/Button';
 
 const styles = {
-  container: tw`p-8`,
+  container: tw`p-8 flex flex-col`,
   wrapper: tw`relative w-full h-96 m-auto border-8 border-gray-800 rounded-sm`,
   info: tw`flex justify-between items-center my-5`,
   info__title: tw`text-2xl font-bold`,
@@ -22,11 +23,13 @@ export default function Detail() {
   const router = useRouter();
   const { id } = router.query;
 
-  const [{ loading, data, error }] = useAsync(() => tmdb.getMovieDetail(id));
+  const getMovieDetail = useCallback(() => tmdb.getMovieDetail(id), [id]);
+  const [{ loading, data, error }] = useAsync(getMovieDetail);
 
   if (loading) return <span>loading..</span>;
   if (error) return <span>error..</span>;
-  console.log(data);
+
+  console.log('data', data);
 
   return (
     <div css={styles.container}>
@@ -47,18 +50,20 @@ export default function Detail() {
           {data.vote_average}
         </span>
       </div>
-      <p css={tw`font-bold`}>Company</p>
-      <div css={styles.companies}>
-        {data.production_companies.map((company, idx) => (
-          <p
-            css={styles.companies__company(
-              idx < data.production_companies.length - 1
-            )}
-            key={company.name || idx}
-          >
-            {company?.name}
-          </p>
-        ))}
+      <div>
+        <p css={tw`font-bold`}>Company</p>
+        <div css={styles.companies}>
+          {data.production_companies.map((company, idx) => (
+            <p
+              css={styles.companies__company(
+                idx < data.production_companies.length - 1
+              )}
+              key={company.name || idx}
+            >
+              {company?.name}
+            </p>
+          ))}
+        </div>
       </div>
       <div>
         <h3 css={tw`font-medium text-2xl mb-2`}>Synopsis</h3>

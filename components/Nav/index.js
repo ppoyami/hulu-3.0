@@ -5,7 +5,8 @@ import { getCategory } from 'utils/requests';
 
 const styles = {
   nav: tw`relative`,
-  list: tw`flex overflow-x-scroll scrollbar-hide text-2xl whitespace-nowrap px-10 sm:px-20 space-x-10 sm:space-x-20`,
+  list: tw`flex overflow-x-scroll scrollbar-hide text-2xl whitespace-nowrap px-10 
+    sm:px-20 space-x-10 sm:space-x-20`,
   list__item: isCurrent =>
     css`
       ${tw`last:pr-24 cursor-pointer transition duration-100 
@@ -24,7 +25,9 @@ export default function Nav() {
       <div css={styles.list}>
         {Object.entries(getCategory).map(([key, { title }]) => (
           <h2
-            css={styles.list__item(key === query?.genre)}
+            css={styles.list__item(
+              key === (query?.genre || Object.keys(getCategory)[0])
+            )}
             key={key}
             onClick={() => router.push(`/?genre=${key}`)}
           >

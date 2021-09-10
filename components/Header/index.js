@@ -16,7 +16,7 @@ import HeaderItem from './HeaderItem';
 
 const styles = {
   header: tw`flex flex-col pt-5 sm:flex-row justify-between items-center h-auto placeholder-opacity-100`,
-  items: tw`flex flex-grow justify-evenly max-w-2xl `,
+  items: tw`flex flex-grow m-auto justify-evenly max-w-2xl `,
   logo: tw`object-contain`,
 };
 
