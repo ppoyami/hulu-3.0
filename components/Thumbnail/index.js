@@ -8,12 +8,14 @@ import { ThumbUpIcon } from '@heroicons/react/outline';
 const styles = {
   container: tw`p-2 cursor-pointer relative`,
   image: tw`transform group-hover:scale-125 transition duration-300 ease-in-out`,
-  // TODO: tw`` 내부에 커스텀 css 입력하는 방법은?
   overview: css`
     max-height: calc(33.3% - 1rem);
     max-width: calc(100% - 1rem);
-    background-color: rgba(0, 0, 0, 0.8);
-    ${tw` font-size[small] sm:font-size[medium] xl:font-size[large] opacity[0] line-height[1.7] font-weight[700] absolute bottom-20 p-3 transition duration-300 ease-in-out transform translate-y-6 overflow-hidden overflow-ellipsis group-hover:opacity-100 group-hover:translate-y-0`}
+    ${tw`absolute bottom-20 p-3  bg-gray-900 text-sm sm:text-sm xl:text-base font-semibold opacity-0 
+        transition duration-300 ease-in-out 
+        transform translate-y-6 overflow-hidden overflow-ellipsis 
+        group-hover:opacity-100 group-hover:translate-y-0
+    `}
   `,
   info: tw`h-20 p-2`,
   info__title: tw`text-2xl truncate mt-1 text-white transition-all duration-100 ease-in-out group-hover:font-bold`,

@@ -6,6 +6,7 @@ import useAsync from 'hooks/useAsync';
 import tmdb from 'service';
 import { IMAGE_BASE_URL } from 'utils/requests';
 import { StarIcon } from '@heroicons/react/solid';
+import Button from 'components/elements/Button';
 
 const styles = {
   container: tw`p-8`,
@@ -13,6 +14,8 @@ const styles = {
   info: tw`flex justify-between items-center my-5`,
   info__title: tw`text-2xl font-bold`,
   info__vote: tw`flex items-center text-xl`,
+  companies: tw`flex flex-wrap mb-3 border-b-2 border-gray-700 pb-4`,
+  companies__company: isNotLast => isNotLast && tw`mr-4`,
 };
 
 export default function Detail() {
@@ -45,10 +48,12 @@ export default function Detail() {
         </span>
       </div>
       <p css={tw`font-bold`}>Company</p>
-      <div css={css([tw`flex flex-wrap mb-3 border-b-2 border-gray-700 pb-4`])}>
+      <div css={styles.companies}>
         {data.production_companies.map((company, idx) => (
           <p
-            css={css([idx < data.production_companies.length - 1 && tw`mr-4`])}
+            css={styles.companies__company(
+              idx < data.production_companies.length - 1
+            )}
             key={company.name || idx}
           >
             {company?.name}
@@ -59,11 +64,7 @@ export default function Detail() {
         <h3 css={tw`font-medium text-2xl mb-2`}>Synopsis</h3>
         <p css={tw`text-gray-300 text-opacity-50`}>{data.overview}</p>
       </div>
-      <button
-        css={tw`text-xl block uppercase p-3 w-full m-auto my-4 bg-green-700 hover:bg-green-600 rounded-md`}
-      >
-        tmdb
-      </button>
+      <Button>tmdb</Button>
     </div>
   );
 }

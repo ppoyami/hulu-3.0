@@ -1,4 +1,3 @@
-import tw, { css } from 'twin.macro';
 import tmdb from 'service';
 
 import Nav from 'components/Nav';
@@ -17,7 +16,7 @@ export default function Home({ results }) {
 export async function getServerSideProps(context) {
   const genre = context.query.genre;
   const response = await tmdb.get(
-    `${getCategory[genre]?.url || getCategory.fetchTopRated.url}`
+    `${getCategory[genre]?.url || getCategory.fetchTrending.url}`
   );
 
   return {
