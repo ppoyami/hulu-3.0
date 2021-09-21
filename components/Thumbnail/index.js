@@ -11,6 +11,7 @@ const styles = {
   overview: css`
     max-height: calc(33.3% - 1rem);
     max-width: calc(100% - 1rem);
+
     ${tw`absolute bottom-20 p-3  bg-gray-900 text-sm sm:text-sm xl:text-base font-semibold opacity-0 
         transition duration-300 ease-in-out 
         transform translate-y-6 overflow-hidden overflow-ellipsis 

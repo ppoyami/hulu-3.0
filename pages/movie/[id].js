@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useCallback } from 'react';
-import tw from 'twin.macro';
+import tw, { css } from 'twin.macro';
 
 import useAsync from 'hooks/useAsync';
 import tmdb from 'service';
@@ -17,6 +17,14 @@ const styles = {
   info__vote: tw`flex items-center text-xl`,
   companies: tw`flex flex-wrap mb-3 border-b-2 border-gray-700 pb-4`,
   companies__company: isNotLast => isNotLast && tw`mr-4`,
+  synopsis: css`
+    & > h3 {
+      ${tw`font-medium text-2xl mb-2`}
+    }
+    & > p {
+      ${tw`text-gray-300 text-opacity-50`}
+    }
+  `,
 };
 
 export default function Detail() {
@@ -28,8 +36,6 @@ export default function Detail() {
 
   if (loading) return <span>loading..</span>;
   if (error) return <span>error..</span>;
-
-  console.log('data', data);
 
   return (
     <div css={styles.container}>
@@ -65,9 +71,9 @@ export default function Detail() {
           ))}
         </div>
       </div>
-      <div>
-        <h3 css={tw`font-medium text-2xl mb-2`}>Synopsis</h3>
-        <p css={tw`text-gray-300 text-opacity-50`}>{data.overview}</p>
+      <div css={styles.synopsis}>
+        <h3>Synopsis</h3>
+        <p>{data.overview}</p>
       </div>
       <Button>tmdb</Button>
     </div>

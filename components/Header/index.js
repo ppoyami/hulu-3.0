@@ -1,7 +1,7 @@
 import Image from 'next/image';
-import { Router, useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 
-import tw, { css } from 'twin.macro';
+import tw from 'twin.macro';
 
 import {
   BadgeCheckIcon,
